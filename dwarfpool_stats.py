@@ -11,7 +11,7 @@ from BeautifulSoup import BeautifulSoup
 
 
 STATS_URL = 'http://dwarfpool.com/eth/address'
-payload = {'wallet': '0xad6c5219899d6973cdc4801dcae3e491a19a66d4'}
+payload = {'wallet': ''}
 
 OUTPUT_FILE = 'output.csv'
 
