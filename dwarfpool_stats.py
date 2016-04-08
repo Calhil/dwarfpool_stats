@@ -9,6 +9,7 @@ import requests
 import time
 from BeautifulSoup import BeautifulSoup
 
+import sys
 
 STATS_URL = 'http://dwarfpool.com/eth/address'
 payload = {'wallet': ''}
@@ -31,6 +32,11 @@ def get_last_line(fin):
 
 
 if __name__ == "__main__":
+
+    # perform some checks
+    if payload['wallet'] == '':
+        print 'You need to enter a wallet address'
+        sys.exit()
 
     # main loop
     while True:
