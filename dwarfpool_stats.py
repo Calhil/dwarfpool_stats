@@ -54,7 +54,7 @@ if __name__ == "__main__":
             i += 1
 
         # process the data
-        data = []
+        data = None
         for ii in raw_data:
             # skip the rows where eth amount is still not exactly known
             if 'precalculated' in ii[3]:
@@ -78,7 +78,7 @@ if __name__ == "__main__":
                 t_last = float(get_last_line(f).split(',')[0])
 
         # determine if there is new data
-        if t_last < data[0][0]:
+        if data is not None and t_last < data[0][0]:
             # save new data in reversed order
             with open(OUTPUT_FILE, 'a') as f:
                 writer = csv.writer(f)
