@@ -2,14 +2,12 @@
 Script used to parse and save the table 'Shares for last 24 hours' from dwarfpool.com
 """
 
-
 import csv
 import os
-import requests
 import time
 from BeautifulSoup import BeautifulSoup
 
-import sys
+import requests
 
 STATS_URL = 'http://dwarfpool.com/eth/address'
 payload = {'wallet': ''}
@@ -33,11 +31,6 @@ def get_last_line(fin):
 
 if __name__ == "__main__":
 
-    # perform some checks
-    if payload['wallet'] == '':
-        print 'You need to enter a wallet address'
-        sys.exit()
-
     # main loop
     while True:
 
@@ -54,7 +47,7 @@ if __name__ == "__main__":
             i += 1
 
         # process the data
-        data = None
+        data = []
         for ii in raw_data:
             # skip the rows where eth amount is still not exactly known
             if 'precalculated' in ii[3]:
@@ -78,7 +71,7 @@ if __name__ == "__main__":
                 t_last = float(get_last_line(f).split(',')[0])
 
         # determine if there is new data
-        if data is not None and t_last < data[0][0]:
+        if len(data) > 0 and t_last < data[0][0]:
             # save new data in reversed order
             with open(OUTPUT_FILE, 'a') as f:
                 writer = csv.writer(f)
